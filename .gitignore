@@ -1,0 +1,14 @@
+*~
+.*
+*.txt
+*.csv
+c.out
+gocov.txt
+tests.test
+/xgb/capi/c_api.h
+/go-foo
+/go-dl
+/go-zorros
+/go-iokit
+/goptuna
+/gonum
