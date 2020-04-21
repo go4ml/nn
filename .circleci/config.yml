@@ -10,7 +10,7 @@ jobs:
       MXNET_ENFORCE_DETERMINISM: 1
       OMP_NUM_THREADS: 4
       MXNET_OMP_MAX_THREADS: 4
-      CC_TEST_REPORTER_ID: 1fa4e7523c328c9429acef9148195f67755088bba7c2378e6bac9c21c420dd1b
+      CC_TEST_REPORTER_ID: b021cbc593e35d6998c4da0221c16c55b679073d46dc660a5928c405a561841f
 
     steps:
       - checkout
@@ -19,8 +19,6 @@ jobs:
           # https://circleci.com/docs/2.0/caching/
           keys:
             - v1-pkg-cache
-
-      - run: git clone https://github.com/sudachen/go-iokit
 
       - run: make build
 
