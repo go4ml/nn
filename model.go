@@ -1,11 +1,11 @@
 package nn
 
 import (
-	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/base/fu"
 	"go-ml.dev/pkg/base/model"
-	"go-ml.dev/pkg/nn/mx"
 	"go-ml.dev/pkg/base/tables"
+	"go-ml.dev/pkg/iokit"
+	"go-ml.dev/pkg/nn/mx"
 	"go-ml.dev/pkg/zorros"
 	"golang.org/x/xerrors"
 	"gopkg.in/yaml.v3"
@@ -121,7 +121,7 @@ func (fm *FeaturesMapper) Close() error {
 func ObjectifyModel(c map[string]iokit.Input) (pm model.PredictionModel, err error) {
 	var rd io.ReadCloser
 	if _, ok := c[ModelPartInfo]; !ok {
-		return nil,zorros.New("it's not neural network model")
+		return nil, zorros.New("it's not neural network model")
 	}
 	if rd, err = c[ModelPartInfo].Open(); err != nil {
 		return

@@ -715,7 +715,7 @@ func ReshapeLike(a, b *Symbol) *Symbol {
 	}
 }
 
-func SwapAxes(a *Symbol, x,y int) *Symbol {
+func SwapAxes(a *Symbol, x, y int) *Symbol {
 	return &Symbol{
 		Op:   capi.OpSwapAxis,
 		Args: []*Symbol{a},

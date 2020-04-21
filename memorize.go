@@ -2,8 +2,8 @@ package nn
 
 import (
 	"bufio"
-	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/base/model"
+	"go-ml.dev/pkg/iokit"
 	"gopkg.in/yaml.v3"
 	"io"
 )
@@ -23,7 +23,7 @@ func (mm mnemosyne) Memorize(c *model.CollectionWriter) (err error) {
 	if err = c.Add(ModelPartInfo, func(wr io.Writer) error {
 		en := yaml.NewEncoder(wr)
 		return en.Encode(map[string]interface{}{
-			"kind": "NN",
+			"kind":     "NN",
 			"features": mm.features,
 			"predicts": mm.predicts,
 		})
@@ -42,7 +42,7 @@ func (mm mnemosyne) Memorize(c *model.CollectionWriter) (err error) {
 	}
 	if err = c.Add(ModelPartSummary, func(wr io.Writer) (e error) {
 		w := bufio.NewWriter(wr)
-		mm.network.SummaryOut(false,func(s string){w.WriteString(s+"\n")})
+		mm.network.SummaryOut(false, func(s string) { w.WriteString(s + "\n") })
 		return nil
 	}); err != nil {
 		return

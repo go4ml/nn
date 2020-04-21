@@ -87,11 +87,11 @@ func (e Model) ModelFunc(params hyperopt.Params) model.HungryModel {
 Apply parameters to define model specific
 */
 func (e Model) Apply(params hyperopt.Params) Model {
-	hyperopt.Apply(params,map[string]reflect.Value{
-		"Hidden":reflect.ValueOf(&e.Hidden),
-		"Latent":reflect.ValueOf(&e.Latent),
-		"Beta":reflect.ValueOf(&e.Beta),
-		"Seed":reflect.ValueOf(&e.Seed),
+	hyperopt.Apply(params, map[string]reflect.Value{
+		"Hidden": reflect.ValueOf(&e.Hidden),
+		"Latent": reflect.ValueOf(&e.Latent),
+		"Beta":   reflect.ValueOf(&e.Beta),
+		"Seed":   reflect.ValueOf(&e.Seed),
 	})
 	return e
 }

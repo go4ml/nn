@@ -1,8 +1,8 @@
 package nn
 
 import (
-	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/base/fu"
+	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/nn/mx"
 	"time"
 )

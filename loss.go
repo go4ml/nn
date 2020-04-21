@@ -43,14 +43,13 @@ func (loss CrossEntropyLoss) Loss(out *mx.Symbol) *mx.Symbol {
 	return mx.Sum(mx.Mul(a, -1), -1)
 }
 
-type LcosLoss struct {Num int}
+type LcosLoss struct{ Num int }
 
 func (loss LcosLoss) Loss(out *mx.Symbol) *mx.Symbol {
 	n := fu.Ifei(loss.Num == 0, 1, loss.Num)
 	label := mx.Var("_label", mx.Dim(0, n))
 	return mx.LogCosh(mx.Sub(out, label))
 }
-
 
 type LossFunc func(*mx.Symbol) *mx.Symbol
 

@@ -7,8 +7,8 @@ import "C"
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/dyl"
 	"go-ml.dev/pkg/base/fu"
+	"go-ml.dev/pkg/dyl"
 	"go-ml.dev/pkg/zorros/zlog"
 	"runtime"
 	"unsafe"
@@ -139,11 +139,11 @@ func init() {
 	}
 
 	notInit := false
-	for n,v := range opmap {
+	for n, v := range opmap {
 		if _, ok := mxentry[n]; !ok {
 			notInit = true
 			//panic(fmt.Sprintf("mxnet operator %v is not found in shared library",v))
-			fmt.Printf("mxnet operator %v is not found in shared library\n",v)
+			fmt.Printf("mxnet operator %v is not found in shared library\n", v)
 		}
 	}
 

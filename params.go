@@ -3,8 +3,8 @@ package nn
 import (
 	"bufio"
 	"encoding/binary"
-	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/base/fu"
+	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/nn/mx"
 	"go-ml.dev/pkg/zorros"
 	"golang.org/x/xerrors"
@@ -100,7 +100,7 @@ var prdDIL = []byte{0xa, '-', '-', 0xa}
 
 type ParamsReader struct {
 	io.Closer
-	r io.Reader
+	r     io.Reader
 	least int
 }
 
@@ -109,7 +109,11 @@ func NewParamsReader(input iokit.Input) (prd *ParamsReader, err error) {
 	if rd, err = input.Open(); err != nil {
 		return nil, zorros.Trace(err)
 	}
-	defer func() { if err != nil {rd.Close()} }()
+	defer func() {
+		if err != nil {
+			rd.Close()
+		}
+	}()
 	r := bufio.NewReader(rd)
 	b := []byte{0, 0, 0, 0}
 	equal4b := func(a []byte) bool { return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3] }
@@ -133,7 +137,7 @@ func NewParamsReader(input iokit.Input) (prd *ParamsReader, err error) {
 		return nil, xerrors.Errorf("bad delimiter")
 	}
 
-	prd = &ParamsReader{rd.(io.Closer),r, count}
+	prd = &ParamsReader{rd.(io.Closer), r, count}
 	return prd, nil
 }
 
@@ -141,52 +145,62 @@ func (prd *ParamsReader) HasMore() bool {
 	return prd.least > 0
 }
 
-func (prd *ParamsReader) Next() (n string,out []float32,err error) {
+func (prd *ParamsReader) Next() (n string, out []float32, err error) {
 	b := []byte{0, 0, 0, 0}
 	equal4b := func(a []byte) bool { return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3] }
 	order := binary.ByteOrder(binary.LittleEndian)
 	var ln int32
 	if err = binary.Read(prd.r, order, &ln); err != nil {
-		err = zorros.Trace(err); return
+		err = zorros.Trace(err)
+		return
 	}
 	ns := make([]byte, ln)
 	if err = binary.Read(prd.r, order, &ns); err != nil {
-		err = zorros.Trace(err); return
+		err = zorros.Trace(err)
+		return
 	}
 	n = string(ns)
 	dim := mx.Dimension{}
 	if _, err = io.ReadFull(prd.r, b); err != nil {
-		err = zorros.Trace(err); return
+		err = zorros.Trace(err)
+		return
 	}
 	dim.Len = int(order.Uint32(b))
 	if dim.Len > mx.MaxDimensionCount {
-		err = xerrors.Errorf("bad deimension of '%v' layer params", n); return
+		err = xerrors.Errorf("bad deimension of '%v' layer params", n)
+		return
 	}
 	for i := 0; i < dim.Len; i++ {
 		if _, err = io.ReadFull(prd.r, b); err != nil {
-			err = zorros.Trace(err); return
+			err = zorros.Trace(err)
+			return
 		}
 		dim.Shape[i] = int(order.Uint32(b))
 	}
 	if _, err = io.ReadFull(prd.r, b); err != nil {
-		err = zorros.Trace(err); return
+		err = zorros.Trace(err)
+		return
 	}
 	total := int(order.Uint32(b))
 	if total != dim.Total() {
-		err = xerrors.Errorf("bad dimension of '%v' layer params or values total count is incorrect", n); return
+		err = xerrors.Errorf("bad dimension of '%v' layer params or values total count is incorrect", n)
+		return
 	}
 	v := make([]float32, total)
 	for i := range v {
 		if _, err = io.ReadFull(prd.r, b); err != nil {
-			err = zorros.Trace(err); return
+			err = zorros.Trace(err)
+			return
 		}
 		v[i] = math.Float32frombits(order.Uint32(b))
 	}
 	if _, err = io.ReadFull(prd.r, b); err != nil {
-		err = zorros.Trace(err); return
+		err = zorros.Trace(err)
+		return
 	}
 	if !equal4b(prdDIL) {
-		err = xerrors.Errorf("bad delimiter"); return
+		err = xerrors.Errorf("bad delimiter")
+		return
 	}
 	prd.least--
 	return n, v, nil
@@ -194,14 +208,18 @@ func (prd *ParamsReader) Next() (n string,out []float32,err error) {
 
 func (network *Network) LoadParams(input iokit.Input, forced ...bool) (err error) {
 	var r *ParamsReader
-	if r, err = NewParamsReader(input); err != nil {return zorros.Trace(err)}
+	if r, err = NewParamsReader(input); err != nil {
+		return zorros.Trace(err)
+	}
 	defer r.Close()
 
 	ready := map[string]bool{}
 
 	for r.HasMore() {
 		n, v, err := r.Next()
-		if err != nil {return zorros.Trace(err)}
+		if err != nil {
+			return zorros.Trace(err)
+		}
 		if d, ok := network.Params[n]; ok {
 			if d.Dim().Total() != len(v) {
 				return xerrors.Errorf("bad deimension of '%v' layer params or values total count is incorrect", n)

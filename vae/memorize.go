@@ -1,9 +1,9 @@
 package vae
 
 import (
-	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/base/fu"
 	"go-ml.dev/pkg/base/model"
+	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/nn"
 	"go-ml.dev/pkg/nn/mx"
 	"gopkg.in/yaml.v3"
@@ -23,7 +23,7 @@ func (mm mnemosyne) Memorize(c *model.CollectionWriter) (err error) {
 	if err = c.Add(nn.ModelPartInfo, func(wr io.Writer) error {
 		en := yaml.NewEncoder(wr)
 		return en.Encode(map[string]interface{}{
-			"kind" : "VAE",
+			"kind":     "VAE",
 			"features": mm.features,
 			"predicts": mm.predicts,
 		})

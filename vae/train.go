@@ -3,9 +3,9 @@ package vae
 import (
 	"go-ml.dev/pkg/base/fu"
 	"go-ml.dev/pkg/base/model"
+	"go-ml.dev/pkg/base/tables"
 	"go-ml.dev/pkg/nn"
 	"go-ml.dev/pkg/nn/mx"
-	"go-ml.dev/pkg/base/tables"
 	"go-ml.dev/pkg/zorros"
 	"reflect"
 )
@@ -33,7 +33,7 @@ func train(e Model, dataset model.Dataset, w model.Workout) (report *model.Repor
 	}
 
 	if e.Hidden <= 0 {
-		e.Hidden = e.Width/2
+		e.Hidden = e.Width / 2
 	}
 
 	if e.Optimizer == nil {
