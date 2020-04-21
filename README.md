@@ -6,6 +6,19 @@
 
 
 ```golang
+
+import (
+	"fmt"
+	"go-ml.dev/pkg/base/fu"
+	"go-ml.dev/pkg/base/model"
+	"go-ml.dev/pkg/dataset/mnist"
+	"go-ml.dev/pkg/iokit"
+	"go-ml.dev/pkg/nn"
+	"go-ml.dev/pkg/nn/mx"
+	"gotest.tools/assert"
+	"testing"
+)
+
 var mnistConv0 = nn.Sequence(
 	nn.Convolution{Channels: 24, Kernel: mx.Dim(3, 3), Activation: nn.ReLU},
 	nn.MaxPool{Kernel: mx.Dim(2, 2), Stride: mx.Dim(2, 2)},
