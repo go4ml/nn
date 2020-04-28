@@ -9,7 +9,6 @@
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/base/fu"
 	"go-ml.dev/pkg/base/model"
 	"go-ml.dev/pkg/dataset/mnist"
 	"go-ml.dev/pkg/iokit"
@@ -28,7 +27,7 @@ var mnistConv0 = nn.Sequence(
 	nn.FullyConnected{Size: 10, Activation: nn.Softmax})
 
 func Test_mnistConv0(t *testing.T) {
-	modelFile := iokit.File(fu.ModelPath("mnist_test_conv0.zip"))
+	modelFile := iokit.File(model.Path("mnist_test_conv0.zip"))
 
 	report := nn.Model{
 		Network:   mnistConv0,

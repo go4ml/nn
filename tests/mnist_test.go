@@ -8,7 +8,6 @@ import (
 	"go-ml.dev/pkg/iokit"
 	"go-ml.dev/pkg/nn"
 	"go-ml.dev/pkg/nn/mx"
-	"go-ml.dev/pkg/nn/vae"
 	"gotest.tools/assert"
 	"testing"
 )
@@ -89,35 +88,4 @@ func Test_mnistConv0(t *testing.T) {
 	lr := model.LuckyEvaluate(mnist.T10k, model.LabelCol, net1, 32, model.Classification{})
 	fmt.Println(lr.Round(5))
 	assert.Assert(t, model.Accuracy(lr) >= 0.98)
-}
-
-func Test_mnistVae(t *testing.T) {
-	modelFile := iokit.File(fu.ModelPath("mnist_test_conv0.zip"))
-
-	report := vae.Model{
-		Optimizer: nn.Adam{Lr: .001},
-		Seed:      43,
-		Hidden:    128,
-		Latent:    16,
-		Context:   mx.GPU,
-	}.Feed(model.Dataset{
-		Source:   mnist.Data.RandomFlag("Test", 42, 0.2),
-		Test:     "Test",
-		Features: []string{"Image"},
-	}).LuckyTrain(model.Training{
-		Iterations: 8,
-		ModelFile:  modelFile,
-		Metrics:    model.Regression{Error: 0.019},
-		Score:      model.LossScore,
-	})
-
-	fmt.Println(report.TheBest, report.Score)
-	fmt.Println(report.History.Round(5))
-	assert.Assert(t, model.Error(report.Test) < 0.019)
-
-	x := mnist.T10k.Alias("Image", "Ilabel")
-	pred1 := nn.LuckyObjectify(modelFile, vae.RecoderCollection)
-	lr := model.LuckyEvaluate(x, "Ilabel", pred1, 32, &model.Regression{})
-	fmt.Println(lr.Round(5))
-	assert.Assert(t, model.Error(lr) < 0.019)
 }
