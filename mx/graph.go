@@ -2,8 +2,8 @@ package mx
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/base/fu"
-	"go-ml.dev/pkg/nn/mx/capi"
+	"go4ml.xyz/base/fu"
+	"go4ml.xyz/nn/mx/capi"
 	"runtime"
 	"strings"
 )

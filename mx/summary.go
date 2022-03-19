@@ -5,8 +5,8 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"go-ml.dev/pkg/nn/mx/capi"
-	"go-ml.dev/pkg/zorros/zlog"
+	"go4ml.xyz/nn/mx/capi"
+	"go4ml.xyz/zorros/zlog"
 	"strings"
 )
 

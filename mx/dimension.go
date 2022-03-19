@@ -2,7 +2,7 @@ package mx
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/zorros"
+	"go4ml.xyz/zorros"
 	"strconv"
 	"strings"
 )

@@ -1,6 +1,6 @@
 package nn
 
-import "go-ml.dev/pkg/nn/mx"
+import "go4ml.xyz/nn/mx"
 
 type Dropout struct {
 	Rate float32

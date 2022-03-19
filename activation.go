@@ -2,7 +2,7 @@ package nn
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/nn/mx"
+	"go4ml.xyz/nn/mx"
 )
 
 func Sigmoid(a *mx.Symbol) *mx.Symbol {

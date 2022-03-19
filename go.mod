@@ -1,14 +1,14 @@
-module go-ml.dev/pkg/nn
+module go4ml.xyz/nn
 
 go 1.13
 
 require (
-	go-ml.dev/pkg/base v0.0.0-20200421061747-f9407e052a43
-	go-ml.dev/pkg/dataset v0.0.0-20200421064951-13afeb53babc
-	go-ml.dev/pkg/dyl v0.0.0-20200421063229-426748993729
-	go-ml.dev/pkg/iokit v0.0.0-20200421032144-20a83223314f
-	go-ml.dev/pkg/zorros v0.0.0-20200421055828-4ca73b7090e7
-	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
-	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+	go4ml.xyz/base v0.0.0-20220319190047-6d9c029dc367
+	go4ml.xyz/dataset v0.0.0-20220319191103-5fd8c86ba43e
+	go4ml.xyz/dyl v0.0.0-20220319190650-bac12ab4b595
+	go4ml.xyz/iokit v0.0.0-20220319170107-5034b0bf1aea
+	go4ml.xyz/zorros v0.0.0-20220319185517-7c9b97feb3c6
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	gotest.tools v2.2.0+incompatible
 )

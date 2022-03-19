@@ -1,7 +1,7 @@
 package nn
 
 import (
-	"go-ml.dev/pkg/nn/mx"
+	"go4ml.xyz/nn/mx"
 )
 
 type Block interface {

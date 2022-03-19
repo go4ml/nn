@@ -2,8 +2,8 @@ package nn
 
 import (
 	"bufio"
-	"go-ml.dev/pkg/base/model"
-	"go-ml.dev/pkg/iokit"
+	"go4ml.xyz/base/model"
+	"go4ml.xyz/iokit"
 	"gopkg.in/yaml.v3"
 	"io"
 )

@@ -1,6 +1,6 @@
 package mx
 
-import "go-ml.dev/pkg/nn/mx/capi"
+import "go4ml.xyz/nn/mx/capi"
 
 func SgdMomUpdate(params, grads, mom *NDArray, lr, momentum, wd float64) {
 	capi.OptimizerUpdate(

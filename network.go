@@ -1,9 +1,9 @@
 package nn
 
 import (
-	"go-ml.dev/pkg/base/fu"
-	"go-ml.dev/pkg/iokit"
-	"go-ml.dev/pkg/nn/mx"
+	"go4ml.xyz/base/fu"
+	"go4ml.xyz/iokit"
+	"go4ml.xyz/nn/mx"
 	"time"
 )
 

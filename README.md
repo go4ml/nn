@@ -9,11 +9,11 @@
 
 import (
 	"fmt"
-	"go-ml.dev/pkg/base/model"
-	"go-ml.dev/pkg/dataset/mnist"
-	"go-ml.dev/pkg/iokit"
-	"go-ml.dev/pkg/nn"
-	"go-ml.dev/pkg/nn/mx"
+	"go4ml.xyz/base/model"
+	"go4ml.xyz/dataset/mnist"
+	"go4ml.xyz/iokit"
+	"go4ml.xyz/nn"
+	"go4ml.xyz/nn/mx"
 	"gotest.tools/assert"
 	"testing"
 )

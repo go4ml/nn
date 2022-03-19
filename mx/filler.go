@@ -1,7 +1,7 @@
 package mx
 
 import (
-	"go-ml.dev/pkg/nn/mx/capi"
+	"go4ml.xyz/nn/mx/capi"
 	"math"
 	"sync"
 )
