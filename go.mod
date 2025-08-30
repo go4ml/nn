@@ -1,6 +1,6 @@
 module go4ml.xyz/nn
 
-go 1.23.0
+go 1.25.0
 
 require (
 	go4ml.xyz/base v0.0.0-20220319190047-6d9c029dc367
