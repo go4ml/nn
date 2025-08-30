@@ -13,6 +13,10 @@ jobs:
       CC_TEST_REPORTER_ID: b021cbc593e35d6998c4da0221c16c55b679073d46dc660a5928c405a561841f
 
     steps:
+      - run: |
+          # Use HTTPS for public repos to avoid SSH key issues
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+      
       - checkout
 
       - restore_cache:
